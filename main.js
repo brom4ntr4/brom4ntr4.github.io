@@ -2,7 +2,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNav();
+  initResumeMenu();
 });
+
+function initResumeMenu() {
+  const btn = document.getElementById('resume-btn');
+  const list = document.getElementById('resume-list');
+  if (!btn || !list) return;
+
+  const close = () => { list.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = list.hidden;
+    list.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', (e) => { if (!list.contains(e.target)) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+}
 
 function initTheme() {
   const saved = localStorage.getItem('theme');
