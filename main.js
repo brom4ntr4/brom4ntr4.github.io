@@ -1,10 +1,43 @@
 'use strict';
 document.addEventListener('DOMContentLoaded', () => {
+  initI18n();
   initTheme();
   initNav();
   initResumeMenu();
   initLightbox();
 });
+
+function initI18n() {
+  const supported = ['en', 'fr', 'es'];
+  const saved = localStorage.getItem('lang');
+  const browser = (navigator.language || 'en').slice(0, 2);
+  const lang = supported.includes(saved) ? saved : (supported.includes(browser) ? browser : 'en');
+  apply(lang);
+
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => apply(btn.dataset.lang));
+  });
+
+  function apply(lang) {
+    const map = window.translations[lang] || window.translations.en;
+    window.__lang = lang;
+    document.documentElement.setAttribute('lang', lang);
+    localStorage.setItem('lang', lang);
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const v = map[el.getAttribute('data-i18n')];
+      if (v != null) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const v = map[el.getAttribute('data-i18n-aria')];
+      if (v != null) el.setAttribute('aria-label', v);
+    });
+
+    document.querySelectorAll('.lang-switch button').forEach(b => {
+      b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+    });
+  }
+}
 
 function initLightbox() {
   const lb = document.getElementById('lightbox');
