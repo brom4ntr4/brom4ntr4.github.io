@@ -183,7 +183,15 @@ body.lb-open { overflow: hidden; }
 .press { background: var(--accent-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: clamp(3rem, 7vw, 4.5rem) 0; text-align: center; }
 .press-inner { max-width: 760px; }
 .press-eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .75rem; font-weight: 600; color: var(--text-muted); }
-.press-pub { font-size: clamp(1.3rem, 3.5vw, 1.9rem); font-weight: 800; letter-spacing: -.02em; margin: .4rem 0 1.1rem; }
+.press-pub { margin: .6rem 0 1.2rem; }
+.press-logo {
+  display: inline-block;
+  width: min(280px, 72vw);
+  height: 42px;
+  background-color: var(--text);
+  -webkit-mask: url(/assets/press/conde-nast-traveler.svg) center / contain no-repeat;
+  mask: url(/assets/press/conde-nast-traveler.svg) center / contain no-repeat;
+}
 .press-quote { font-size: clamp(1.05rem, 2.4vw, 1.35rem); line-height: 1.5; font-weight: 500; color: var(--text); font-style: italic; }
 .press-quote::before { content: "\201C"; display: block; font-family: Georgia, serif; font-size: 3rem; line-height: .5; color: var(--accent); opacity: .55; margin-bottom: .4rem; font-style: normal; }
 .press-cite { color: var(--text-subtle); font-size: .85rem; margin-top: 1rem; }
