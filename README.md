@@ -11,11 +11,17 @@ Then open http://127.0.0.1:8000
 
 ## Customize (owner)
 
-Replace these placeholders with real content:
+Remaining placeholder to replace:
 
 - `assets/photo.svg` → a real photo. Add `assets/photo.jpg` and update the `src` in `index.html` (hero `<img>`).
-- `assets/projects/moroccan-carpet-{1,2,3}.svg` → real Moroccan Carpet screenshots.
-- `assets/projects/weberberx-{1,2,3}.svg` → real WeberberX screenshots.
+
+Already real (captured from the live apps):
+
+- `assets/projects/moroccan-carpet-{1,2,3}.jpg` + `moroccan-carpet.gif` — Moroccan Carpet screenshots & scroll GIF.
+- `assets/projects/weberberx-{1,2,3}.jpg` + `weberberx.gif` — WeberberX screenshots & scroll GIF.
+
+Other editable content:
+
 - `assets/og-image.svg` → a designed social preview (1200×630). Update the OG `<meta>` in `index.html` if you switch to `.png`.
 - Résumé PDFs (`resume_en.pdf`, `resume_fr.pdf`, `resume_es.pdf`) are already in place; replace when updated.
 - Project descriptions/taglines live in `translations.js` (keys `work.mc.*`, `work.wx.*`).
