@@ -150,17 +150,24 @@ function initResumeMenu() {
 }
 
 function initTheme() {
-  const saved = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = saved || (prefersDark ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', theme);
+  const root = document.documentElement;
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  const systemTheme = () => (mq.matches ? 'dark' : 'light');
+
+  // Follow the system automatically unless the visitor set an explicit override.
+  root.setAttribute('data-theme', localStorage.getItem('theme') || systemTheme());
+
+  // Live-update when the OS switches light/dark, while still in auto mode.
+  mq.addEventListener('change', () => {
+    if (!localStorage.getItem('theme')) root.setAttribute('data-theme', systemTheme());
+  });
 
   const btn = document.getElementById('theme-toggle');
   if (!btn) return;
   btn.addEventListener('click', () => {
-    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next); // explicit manual override
   });
 }
 
