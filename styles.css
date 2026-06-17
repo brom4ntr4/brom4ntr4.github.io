@@ -205,3 +205,14 @@ body.lb-open { overflow: hidden; }
 .timeline-item h3 { font-size: 1.1rem; margin: .25rem 0 .15rem; }
 .timeline-org { color: var(--text-muted); font-size: .92rem; font-weight: 500; }
 .timeline-desc { color: var(--text-muted); font-size: .92rem; margin-top: .35rem; max-width: 65ch; }
+
+/* ===== Contact ===== */
+.contact { text-align: center; }
+.contact-inner { max-width: 640px; }
+.contact .section-num { color: var(--accent); text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; }
+.contact-cta { font-size: clamp(1.8rem, 5vw, 2.6rem); margin-bottom: .8rem; }
+.contact-body { color: var(--text-muted); margin-bottom: 1.6rem; }
+.contact-actions { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; }
+
+/* ===== Footer ===== */
+.site-footer { border-top: 1px solid var(--border); padding: 1.6rem 0; text-align: center; color: var(--text-subtle); font-size: .85rem; }
