@@ -196,3 +196,12 @@ body.lb-open { overflow: hidden; }
 .pills { display: flex; flex-wrap: wrap; gap: .5rem; }
 .pills li { font-size: .85rem; border: 1px solid var(--border); border-radius: 999px; padding: .4rem .9rem; color: var(--text-muted); transition: var(--t); }
 .pills li:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ===== Timeline ===== */
+.timeline { position: relative; border-left: 2px solid var(--border); margin-left: .5rem; padding-left: 1.6rem; display: flex; flex-direction: column; gap: 2rem; }
+.timeline-item { position: relative; }
+.timeline-item::before { content: ""; position: absolute; left: calc(-1.6rem - 6px); top: .45rem; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg-alt); }
+.timeline-date { font-size: .8rem; font-weight: 600; color: var(--accent); }
+.timeline-item h3 { font-size: 1.1rem; margin: .25rem 0 .15rem; }
+.timeline-org { color: var(--text-muted); font-size: .92rem; font-weight: 500; }
+.timeline-desc { color: var(--text-muted); font-size: .92rem; margin-top: .35rem; max-width: 65ch; }
