@@ -209,6 +209,21 @@ body.lb-open { overflow: hidden; }
 .more-link { display: inline-block; margin-top: 1.5rem; color: var(--accent); font-weight: 600; }
 .more-link:hover { text-decoration: underline; }
 
+/* ===== 42 Projects ===== */
+.edu-stats { display: flex; flex-wrap: wrap; gap: .7rem; margin-bottom: 1.8rem; }
+.edu-stat { font-size: .85rem; color: var(--text-muted); background: var(--accent-soft); border: 1px solid var(--border); border-radius: 999px; padding: .4rem .9rem; }
+.edu-stat strong { color: var(--accent); font-weight: 700; }
+.edu-stat--soft { color: var(--text-subtle); background: transparent; }
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem 1.3rem; transition: var(--t); }
+.edu-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow); }
+.edu-card-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .15rem; }
+.edu-card-head h3 { font-size: 1.05rem; }
+.edu-badge { flex-shrink: 0; font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; border-radius: 999px; padding: .25rem .6rem; border: 1px solid var(--border); color: var(--text-subtle); }
+.edu-badge--bonus { background: var(--accent); color: #fff; border-color: var(--accent); }
+.edu-meta { font-size: .78rem; color: var(--text-subtle); margin-bottom: .6rem; }
+.edu-desc { font-size: .9rem; color: var(--text-muted); }
+
 /* ===== Skills ===== */
 .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.6rem; }
 .skill-group h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .8rem; }
