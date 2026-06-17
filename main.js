@@ -3,7 +3,88 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNav();
   initResumeMenu();
+  initLightbox();
 });
+
+function initLightbox() {
+  const lb = document.getElementById('lightbox');
+  if (!lb) return;
+  const img = document.getElementById('lb-img');
+  const thumbs = document.getElementById('lb-thumbs');
+  const titleEl = document.getElementById('lb-title');
+  const taglineEl = document.getElementById('lb-tagline');
+  const tagsEl = document.getElementById('lb-tags');
+  const descEl = document.getElementById('lb-desc');
+  const liveEl = document.getElementById('lb-live');
+  const internalEl = document.getElementById('lb-internal');
+  let lastFocus = null;
+
+  const t = (key) => {
+    const lang = window.__lang || 'en';
+    return (window.translations?.[lang]?.[key]) ?? (window.translations?.en?.[key]) ?? '';
+  };
+
+  function open(card) {
+    lastFocus = document.activeElement;
+    const images = card.dataset.images.split(',');
+    const tags = card.dataset.tags.split(',');
+
+    titleEl.textContent = card.dataset.title;
+    taglineEl.textContent = t(card.dataset.taglineKey);
+    descEl.textContent = t(card.dataset.descKey);
+    tagsEl.replaceChildren(...tags.map(x => {
+      const s = document.createElement('span');
+      s.textContent = x;
+      return s;
+    }));
+
+    img.src = images[0]; img.alt = card.dataset.title;
+    thumbs.replaceChildren(...images.map((src, i) => {
+      const th = document.createElement('img');
+      th.src = src; th.alt = ''; th.dataset.src = src;
+      if (i === 0) th.classList.add('active');
+      th.addEventListener('click', () => {
+        img.src = src;
+        thumbs.querySelectorAll('img').forEach(x => x.classList.remove('active'));
+        th.classList.add('active');
+      });
+      return th;
+    }));
+
+    if (card.dataset.live) {
+      liveEl.href = card.dataset.live; liveEl.hidden = false; internalEl.hidden = true;
+    } else {
+      liveEl.hidden = true; internalEl.hidden = false;
+    }
+
+    lb.hidden = false; document.body.classList.add('lb-open');
+    lb.querySelector('.lightbox-close').focus();
+  }
+
+  function close() {
+    lb.hidden = true; document.body.classList.remove('lb-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.work-card').forEach(card => {
+    card.addEventListener('click', () => open(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card); }
+    });
+  });
+  lb.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+
+  // focus trap
+  lb.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || lb.hidden) return;
+    const f = lb.querySelectorAll('a[href], button:not([hidden]), img[data-src]');
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+}
 
 function initResumeMenu() {
   const btn = document.getElementById('resume-btn');

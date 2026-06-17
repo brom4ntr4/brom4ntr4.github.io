@@ -103,7 +103,55 @@
         <p class="about-langs"><strong data-i18n="about.langLabel">Languages</strong>: <span data-i18n="about.langValue">Spanish · English · French (fluent) · Arabic (native)</span></p>
       </div>
     </section>
-    <!-- work: Task 6 -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head"><span class="section-num">02</span><h2 data-i18n="work.heading">Selected Work</h2></div>
+        <p class="section-sub" data-i18n="work.subtitle">Commercial products I designed and shipped end-to-end.</p>
+
+        <div class="work-grid">
+          <article class="work-card" tabindex="0" role="button" aria-label="Moroccan Carpet"
+            data-title="Moroccan Carpet" data-tagline-key="work.mc.tagline" data-desc-key="work.mc.desc"
+            data-tags="Next.js 16,React 19,TypeScript,Tailwind v4,WooCommerce,Stripe,Vercel,Cloudflare"
+            data-images="/assets/projects/moroccan-carpet-1.svg,/assets/projects/moroccan-carpet-2.svg,/assets/projects/moroccan-carpet-3.svg"
+            data-live="https://moroccan-carpet.com">
+            <div class="work-thumb"><img src="/assets/projects/moroccan-carpet-1.svg" alt="Moroccan Carpet screenshot" loading="lazy"></div>
+            <div class="work-body">
+              <h3>Moroccan Carpet</h3>
+              <p data-i18n="work.mc.tagline">Headless multilingual e-commerce</p>
+            </div>
+          </article>
+
+          <article class="work-card" tabindex="0" role="button" aria-label="WeberberX"
+            data-title="WeberberX" data-tagline-key="work.wx.tagline" data-desc-key="work.wx.desc"
+            data-tags="Next.js 15,TypeScript,Express,Node 24,PostgreSQL 15,Docker,Redis,Nginx,TrueNAS"
+            data-images="/assets/projects/weberberx-1.svg,/assets/projects/weberberx-2.svg,/assets/projects/weberberx-3.svg"
+            data-live="">
+            <div class="work-thumb"><img src="/assets/projects/weberberx-1.svg" alt="WeberberX screenshot" loading="lazy"></div>
+            <div class="work-body">
+              <h3>WeberberX</h3>
+              <p data-i18n="work.wx.tagline">Inventory &amp; multi-marketplace publishing</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="lb-title">
+        <div class="lightbox-backdrop" data-close></div>
+        <div class="lightbox-panel">
+          <button class="lightbox-close" data-close aria-label="Close" data-i18n-aria="work.close">&times;</button>
+          <div class="lightbox-stage"><img id="lb-img" src="" alt=""></div>
+          <div class="lightbox-thumbs" id="lb-thumbs"></div>
+          <div class="lightbox-info">
+            <h3 id="lb-title"></h3>
+            <p id="lb-tagline" class="lightbox-tagline"></p>
+            <div id="lb-tags" class="tags"></div>
+            <p id="lb-desc" class="lightbox-desc"></p>
+            <a id="lb-live" class="btn btn-primary" target="_blank" rel="noopener" data-i18n="work.visit">Visit live</a>
+            <span id="lb-internal" class="lightbox-internal" data-i18n="work.internal" hidden>Internal tool</span>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- opensource: Task 7 -->
     <!-- skills: Task 8 -->
     <!-- experience: Task 9 -->

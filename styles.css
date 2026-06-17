@@ -144,3 +144,37 @@ h1, h2, h3 { line-height: 1.1; letter-spacing: -0.02em; font-weight: 800; }
 .about-body { max-width: 70ch; font-size: 1.08rem; color: var(--text-muted); }
 .about-langs { margin-top: 1.2rem; color: var(--text-muted); font-size: .95rem; }
 .about-langs strong { color: var(--text); }
+
+/* ===== Section sub ===== */
+.section-sub { color: var(--text-muted); margin: -1.2rem 0 2rem; }
+
+/* ===== Work ===== */
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.work-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform var(--t), box-shadow var(--t), border-color var(--t); }
+.work-card:hover, .work-card:focus-visible { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+.work-thumb { aspect-ratio: 16/10; overflow: hidden; }
+.work-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.work-body { padding: 1.1rem 1.3rem 1.4rem; }
+.work-body h3 { font-size: 1.2rem; margin-bottom: .25rem; }
+.work-body p { color: var(--text-muted); font-size: .9rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tags span { font-size: .72rem; background: var(--accent-soft); color: var(--accent); border-radius: 5px; padding: .2rem .55rem; }
+
+/* ===== Lightbox ===== */
+.lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: var(--pad); }
+.lightbox[hidden] { display: none; }
+.lightbox-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(2px); }
+.lightbox-panel { position: relative; z-index: 1; background: var(--surface); border-radius: var(--radius); max-width: 720px; width: 100%; max-height: 90vh; overflow: auto; box-shadow: var(--shadow); }
+.lightbox-close { position: absolute; top: .6rem; right: .6rem; z-index: 2; width: 34px; height: 34px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-size: 1.3rem; line-height: 1; display: grid; place-items: center; }
+.lightbox-stage { aspect-ratio: 16/10; background: var(--bg-alt); }
+.lightbox-stage img { width: 100%; height: 100%; object-fit: cover; }
+.lightbox-thumbs { display: flex; gap: .5rem; padding: .7rem; }
+.lightbox-thumbs img { width: 64px; height: 42px; object-fit: cover; border-radius: 5px; cursor: pointer; opacity: .6; border: 2px solid transparent; }
+.lightbox-thumbs img.active, .lightbox-thumbs img:hover { opacity: 1; border-color: var(--accent); }
+.lightbox-info { padding: 0 1.4rem 1.6rem; }
+.lightbox-info h3 { font-size: 1.4rem; }
+.lightbox-tagline { color: var(--accent); font-weight: 600; font-size: .9rem; margin: .2rem 0 .8rem; }
+.lightbox-info .tags { margin-bottom: 1rem; }
+.lightbox-desc { color: var(--text-muted); margin-bottom: 1.2rem; }
+.lightbox-internal { color: var(--text-subtle); font-size: .85rem; font-style: italic; }
+body.lb-open { overflow: hidden; }
