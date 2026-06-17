@@ -98,6 +98,9 @@ function initLightbox() {
     if (card.dataset.live) {
       liveEl.href = card.dataset.live; liveEl.hidden = false; internalEl.hidden = true;
     } else {
+      const labelKey = card.dataset.nolabel || 'work.internal';
+      internalEl.setAttribute('data-i18n', labelKey);
+      internalEl.textContent = t(labelKey);
       liveEl.hidden = true; internalEl.hidden = false;
     }
 
