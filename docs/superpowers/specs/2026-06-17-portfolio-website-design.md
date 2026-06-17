@@ -9,7 +9,7 @@
 A personal-brand hub ("this is me") for Abdelghani Hammoud, a software engineer / 42 School
 student. It introduces him, showcases selected work visually, links to open-source code, and
 provides ways to connect (GitHub, LinkedIn, email, resume). General audience — recruiters,
-peers, and potential collaborators alike.
+peers, and potential collaborators alike. Trilingual (EN / FR / ES).
 
 ## 2. Tech & Hosting
 
@@ -18,6 +18,7 @@ peers, and potential collaborators alike.
 - Deploys as-is on GitHub Pages from this repo. Custom domain `abdelghani.me` (CNAME present).
 - One external font request (Inter via Google Fonts). Everything else self-contained.
 - No backend. Contact is a `mailto:` link (no form service).
+- **Multilingual via client-side JS** (no build) — see section 4.
 
 ## 3. Visual Design
 
@@ -35,14 +36,40 @@ peers, and potential collaborators alike.
 - **Accessibility:** Semantic HTML5 landmarks, keyboard-navigable (including the lightbox),
   visible focus states, sufficient contrast in both themes, `alt` text on all images.
 
-## 4. Page Structure (single scroll)
+## 4. Internationalization (i18n)
+
+- **Languages:** English (en), French (fr), Spanish (es).
+- **Mechanism:** Client-side JS translation swap. Translatable text elements carry a
+  `data-i18n="<key>"` attribute. A translations file holds all strings keyed by language:
+  ```js
+  const translations = {
+    en: { "hero.title": "...", "about.body": "...", ... },
+    fr: { ... },
+    es: { ... },
+  }
+  ```
+  On language change, `main.js` walks the DOM and replaces text/attributes from the active
+  language map, sets `<html lang>`, and saves the choice to `localStorage`.
+- **Default language:** First visit reads `navigator.language` → en/fr/es if it matches,
+  else English. Subsequent visits use the saved `localStorage` choice.
+- **Switcher:** A compact `EN · FR · ES` control in the nav (active language highlighted in
+  emerald). Works on mobile too.
+- **Coverage:** All visible copy is translated — nav labels, hero, About, Work
+  titles/descriptions, Open Source descriptions, Skills group labels, Experience entries,
+  Contact, footer, and `aria-label`s / meta where relevant. Proper nouns (project names,
+  tech tags, "GitHub", "LinkedIn") stay as-is.
+- **No build step** — translations live in a plain JS file the user edits by hand.
+
+## 5. Page Structure (single scroll)
 
 1. **Sticky nav** — `AH.` logo (emerald dot), anchor links (About / Work / Open Source /
-   Skills / Experience / Contact), dark-mode toggle. Smooth-scroll to sections. Collapses to a
-   hamburger menu on mobile.
+   Skills / Experience / Contact), **language switcher (EN · FR · ES)**, dark-mode toggle.
+   Smooth-scroll to sections. Collapses to a hamburger menu on mobile.
 2. **Hero** — accent eyebrow ("Software Engineer"), large name, one-line tagline, action
-   buttons (View work · Resume ↓ · GitHub), and a **circular profile photo**.
-3. **01 — About** — short bio paragraph. *(placeholder text, user edits)*
+   buttons (View work · **Resume ↓** · GitHub), and a **circular profile photo**.
+   - **Resume ↓** is a dropdown menu offering the resume in **EN / FR / ES**
+     (`resume-en.pdf`, `resume-fr.pdf`, `resume-es.pdf`).
+3. **01 — About** — short bio paragraph. *(placeholder text, user edits — in all 3 languages)*
 4. **02 — Work** — visual showcase of **2 projects**. Responsive card grid; each card shows a
    screenshot, title, and short label/tags. Clicking a card opens an in-page **lightbox**:
    - Larger screenshot + a thumbnail strip for multiple images
@@ -60,63 +87,71 @@ peers, and potential collaborators alike.
 8. **06 — Contact** — centered CTA, `mailto:` email link, GitHub & LinkedIn buttons.
 9. **Footer** — © 2026 Abdelghani Hammoud · abdelghani.me.
 
-## 5. External Links / Known Data
+## 6. External Links / Known Data
 
 - **GitHub (projects account):** `https://github.com/m4ntr4r4m4`
 - **LinkedIn:** `https://www.linkedin.com/in/abdelghani-hammoud/`
-- **Email:** `abdelghanihammoud2@gmail.com`
-- **Resume:** "Resume ↓" button links to `/resume.pdf` (user will add the file to the repo).
+- **Email:** `abdelghani@weberber.com`
+- **Resume:** "Resume ↓" dropdown links to `/resume-en.pdf`, `/resume-fr.pdf`,
+  `/resume-es.pdf` (user will add the files to the repo).
 
-## 6. Content Strategy
+## 7. Content Strategy
 
 Build the full structure with real known data (name, links, email, the 5 open-source repos)
-and **clearly-marked placeholders** the user swaps in:
+and **clearly-marked placeholders** the user swaps in. Text placeholders are authored in all
+three languages in the translations file:
 
-- Bio paragraph (About)
+- Bio paragraph (About) — EN/FR/ES
 - Profile photo (`assets/photo.jpg` or similar)
-- 2 showcase projects: screenshots, titles, descriptions, tech tags, live URLs
-- Experience timeline entries
-- `resume.pdf`
+- 2 showcase projects: screenshots, titles, descriptions (EN/FR/ES), tech tags, live URLs
+- Experience timeline entries — EN/FR/ES
+- `resume-en.pdf`, `resume-fr.pdf`, `resume-es.pdf`
 
 Placeholders use obvious sample text/images and HTML comments (`<!-- TODO: ... -->`) so they
 are easy to find and replace.
 
-## 7. File Layout
+## 8. File Layout
 
 ```
 /
-├── index.html          # all markup / sections
+├── index.html          # all markup / sections, data-i18n attributes
 ├── styles.css          # all styles incl. light & dark themes, responsive
-├── main.js             # dark-mode toggle, mobile nav, smooth scroll,
-│                       #   scroll-reveal, lightbox
+├── main.js             # lang switch, dark-mode toggle, mobile nav,
+│                       #   smooth scroll, scroll-reveal, lightbox, resume menu
+├── translations.js     # EN/FR/ES string maps (hand-edited)
 ├── assets/
 │   ├── photo.jpg       # profile photo (placeholder)
 │   ├── projects/       # showcase screenshots (placeholders)
 │   ├── favicon.svg
 │   └── og-image.png    # Open Graph preview (placeholder)
-├── resume.pdf          # placeholder
+├── resume-en.pdf       # placeholder
+├── resume-fr.pdf       # placeholder
+├── resume-es.pdf       # placeholder
 ├── CNAME               # abdelghani.me (existing)
 └── README.md
 ```
 
-## 8. Extras / Polish
+## 9. Extras / Polish
 
 - Smooth-scroll navigation; active-section highlight in nav (optional, nice-to-have).
 - Scroll-reveal fade/slide animations on sections (respects `prefers-reduced-motion`).
 - SEO + social: `<title>`, meta description, Open Graph + Twitter Card tags, favicon.
 - Lighthouse-friendly: minimal JS, no heavy libraries, lazy-load images.
 
-## 9. Explicitly Out of Scope (YAGNI)
+## 10. Explicitly Out of Scope (YAGNI)
 
 - No CMS, no blog (can be added later via Jekyll if ever needed).
 - No contact-form backend / Formspree.
 - No build pipeline, no JS framework.
 - No live GitHub API fetching (open-source list is hand-maintained).
+- No per-language separate URLs / server-side i18n (client-side swap only).
 - No analytics (can add later if wanted).
 
-## 10. Success Criteria
+## 11. Success Criteria
 
 - Loads fast and looks polished on mobile and desktop, light and dark.
+- Language switcher cleanly swaps all visible copy between EN/FR/ES and persists the choice.
 - All known links work; placeholders are obvious and easy to replace.
 - Showcase lightbox works with mouse, touch, and keyboard.
+- Resume dropdown serves the correct PDF per language.
 - Deploys cleanly to GitHub Pages at abdelghani.me with no build step.
