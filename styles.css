@@ -178,3 +178,14 @@ h1, h2, h3 { line-height: 1.1; letter-spacing: -0.02em; font-weight: 800; }
 .lightbox-desc { color: var(--text-muted); margin-bottom: 1.2rem; }
 .lightbox-internal { color: var(--text-subtle); font-size: .85rem; font-style: italic; }
 body.lb-open { overflow: hidden; }
+
+/* ===== Open Source ===== */
+.repos { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.repo-card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.1rem 1.2rem; transition: var(--t); }
+.repo-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow); }
+.repo-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .4rem; }
+.repo-head h3 { font-size: 1rem; }
+.lang-dot { font-size: .72rem; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: .15rem .6rem; }
+.repo-card p { color: var(--text-muted); font-size: .88rem; }
+.more-link { display: inline-block; margin-top: 1.5rem; color: var(--accent); font-weight: 600; }
+.more-link:hover { text-decoration: underline; }
