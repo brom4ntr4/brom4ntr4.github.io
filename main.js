@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initReveal() {
-  const els = document.querySelectorAll('main .section, .hero');
+  const els = document.querySelectorAll('main .section, main .press, .hero');
   els.forEach(el => el.classList.add('reveal'));
   if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('in')); return; }
   const io = new IntersectionObserver((entries) => {
