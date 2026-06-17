@@ -1,2 +1,5 @@
 .superpowers/
 .playwright-mcp/
+
+# raw photo sources (cropped versions live in assets/)
+WhatsApp Image*.jpeg

@@ -11,14 +11,12 @@ Then open http://127.0.0.1:8000
 
 ## Customize (owner)
 
-Remaining placeholder to replace:
+All content is real (no remaining placeholders):
 
-- `assets/photo.svg` → a real photo. Add `assets/photo.jpg` and update the `src` in `index.html` (hero `<img>`).
-
-Already real (captured from the live apps):
-
+- `assets/photo.jpg` — hero profile photo (cropped head-and-shoulders).
 - `assets/projects/moroccan-carpet-{1,2,3}.jpg` + `moroccan-carpet.gif` — Moroccan Carpet screenshots & scroll GIF.
 - `assets/projects/weberberx-{1,2,3}.jpg` + `weberberx.gif` — WeberberX screenshots & scroll GIF.
+- `assets/press/conde-nast-traveler.svg` — press feature wordmark.
 
 Other editable content:
 
